@@ -4,8 +4,7 @@
   "description": "A simple boilerplate to start a node back-end application",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
-    "server": "nodemon --watch \"src/\" --exec \"tsc && node dist/app.js\" -e ts",
+    "start": "nodemon --watch \"src/\" --exec \"tsc && node dist/app.js\" -e ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
