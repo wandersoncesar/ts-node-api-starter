@@ -12,7 +12,7 @@ class AuthMiddleware {
             return response.status(401).send("Authorization is missing.");
         }
 
-        jsonwebtoken.verify(splitted[1], process.env.JWT_SECRET, (error) => {
+        jsonwebtoken.verify(splitted[1], process.env.JWT_SECRET || "shhh", (error) => {
             if (error) {
                 return response.status(401).json(error);
             }
