@@ -21,7 +21,7 @@ class AuthRoute {
                 return response.status(400).send("Invalid email or password.");
             }
 
-            return response.json(jsonwebtoken.sign(JSON.stringify(user), process.env.JWT_SECRET));
+            return response.json(jsonwebtoken.sign(JSON.stringify(user), process.env.JWT_SECRET || 'shhh'));
         }).catch((error) => {
             console.log(error);
             return response.status(500).json(error);
