@@ -4,10 +4,14 @@ import express from "express";
 import AuthRoute from "./routes/auth.route";
 import UsersRoute from "./routes/users.route";
 
+import * as bodyParser from "body-parser";
+
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(bodyParser.json({ type: "application/json" }));
 
 app.use(new AuthRoute().router);
 app.use(new UsersRoute().router);
