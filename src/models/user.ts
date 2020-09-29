@@ -1,5 +1,11 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
 
+export interface IUser {
+    id: number;
+    name: string;
+    email: string;
+}
+
 export class User extends Model {
   public id: number;
   public name: string;

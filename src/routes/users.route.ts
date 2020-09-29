@@ -1,6 +1,6 @@
 import express from "express";
 import AuthMiddleware from "../middlewares/auth.middleware";
-import { User } from "../models/user";
+import { User, IUser } from "../models/user";
 
 class UsersRoute {
     public path = "/users";
@@ -20,7 +20,9 @@ class UsersRoute {
     }
 
     private getAllUsers(request: express.Request, response: express.Response) {
-        User.findAll().then((users) => {
+        User.findAll({
+            attributes: ['id', 'name', 'email'],
+        }).then((users: IUser[]) => {
             return response.status(200).json(users);
         }).catch((error) => {
             return response.status(500).json(error);
@@ -28,7 +30,12 @@ class UsersRoute {
     }
 
     private getUserById(request: express.Request, response: express.Response) {
-        User.findOne({ where: { id: request.params.id } }).then((user) => {
+        User.findOne({ 
+            where: { 
+                id: request.params.id
+            },
+            attributes: ['id', 'name', 'email'], 
+        }).then((user: IUser) => {
             return response.status(200).json(user);
         }).catch((error) => {
             return response.status(500).json(error);

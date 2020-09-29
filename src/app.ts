@@ -15,10 +15,10 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json({ type: "application/json" }));
 
-app.use('/', swaggerUi.serve, swaggerUi.setup({}));
-
 app.use(new AuthRoute().router);
 app.use(new UsersRoute().router);
+
+app.use('/', swaggerUi.serve, swaggerUi.setup({}));
 
 app.listen(port, () => {
   return console.log("Server is listening on port " + port);
