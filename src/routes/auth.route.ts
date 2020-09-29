@@ -23,7 +23,6 @@ class AuthRoute {
 
             return response.status(200).json(jsonwebtoken.sign(JSON.stringify(user), process.env.JWT_SECRET || "shhh"));
         }).catch((error) => {
-            console.log(error);
             return response.status(500).json(error);
         });
     }
