@@ -30,11 +30,11 @@ class UsersRoute {
     }
 
     private getUserById(request: express.Request, response: express.Response) {
-        User.findOne({ 
-            where: { 
+        User.findOne({
+            where: {
                 id: request.params.id
             },
-            attributes: ['id', 'name', 'email'], 
+            attributes: ['id', 'name', 'email'],
         }).then((user: IUser) => {
             return response.status(200).json(user);
         }).catch((error) => {
@@ -47,8 +47,8 @@ class UsersRoute {
             email: request.body.email,
             name: request.body.name,
             password: request.body.password,
-        }).then((user) => {
-            return response.status(200).json(user);
+        }).then(() => {
+            return response.status(201).json();
         }).catch((error) => {
             return response.status(500).json(error);
         });
@@ -59,16 +59,16 @@ class UsersRoute {
             email: request.body.email,
             name: request.body.name,
             password: request.body.password,
-         }, { where:  { id: request.params.id }}).then((user) => {
-            return response.status(200).json(user);
+         }, { where:  { id: request.params.id }}).then(() => {
+            return response.status(204).json();
         }).catch((error) => {
             return response.status(500).json(error);
         });
     }
 
     private deleteUser(request: express.Request, response: express.Response) {
-        User.destroy({ where:  { id: request.params.id }}).then((user) => {
-            return response.status(200).json(user);
+        User.destroy({ where:  { id: request.params.id }}).then(() => {
+            return response.status(204).json();
         }).catch((error) => {
             return response.status(500).json(error);
         });
